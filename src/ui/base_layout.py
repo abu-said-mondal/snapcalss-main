@@ -23,7 +23,7 @@ def style_background_dashboard():
 
         <style>
                 .stApp {
-                    background: #e0e3ff !important;
+                    background: #E0E3FF !important;
                 }
         </style>
     """
@@ -56,7 +56,6 @@ def style_base_layout():
             h2 {
                 font-family: 'Climate Crisis', sans-serif !important;
                 font-size:2rem !important;
-                color:black !important;
                 line-height: 1.05 !important;
                 margin-bottom: 0rem !important;
             }
@@ -95,6 +94,36 @@ def style_base_layout():
             button:hover{
                 transform: scale(1.05)
             }
+                
+            /* Force light-mode styles on all text inputs */
+            .stTextInput > div > div > input {
+                background-color: #ffffff !important;
+                color: #31333F !important;
+                border: 1px solid #cccccc !important;
+                border-radius: 0.375rem !important;
+            }
+
+            /* Input focus state */
+            .stTextInput > div > div > input:focus {
+                border-color: #4A90E2 !important;
+                box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2) !important;
+            }
+
+            /* Input label */
+            .stTextInput label {
+                color: #31333F !important;
+            }
+
+            /* Input placeholder */
+            .stTextInput > div > div > input::placeholder {
+                color: #aaaaaa !important;
+            }
+
+            /* Input container background */
+            .stTextInput > div {
+                background-color: #ffffff !important;
+            }
+                
         </style>
     """
     , unsafe_allow_html=True)
