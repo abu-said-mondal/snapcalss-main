@@ -11,7 +11,8 @@ from src.components.subject_card import subject_card
 
 import numpy as np
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, UTC
+from zoneinfo import ZoneInfo
 from src.pipelines.face_pipeline import predict_attendance
 from src.database.config import supabase
 from src.components.dialog_voice_attendance import voice_attendance_dialog
@@ -149,7 +150,7 @@ def teacher_tab_take_attendance():
 
                     results, attendance_to_log = [], []
 
-                    current_timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+                    current_timestamp = datetime.now(UTC).isoformat()
 
                     for node in enrolled_students:
                         student = node['students']
@@ -234,7 +235,11 @@ def teacher_tab_attendance_records():
 
         data.append({
             'ts_group': ts.split(".")[0] if ts else None,
-            'Time': datetime.fromisoformat(ts).strftime("%Y-%m-%d %I:%M %p") if ts else "N'A",
+            'Time': (
+                datetime.fromisoformat(ts)
+                .astimezone(ZoneInfo("Asia/Kolkata"))
+                .strftime("%Y-%m-%d %I:%M %p")
+            ) if ts else "N/A",
             'Subject': r['subjects']['name'],
             'Subject Code': r['subjects']['subject_code'],
             'is_present': bool(r.get('is_present', False))
