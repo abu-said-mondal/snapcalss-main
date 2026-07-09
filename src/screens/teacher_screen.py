@@ -348,7 +348,7 @@ def teacher_screen_register():
             st.rerun()
 
 
-    st.markdheaderown("Login using password")
+    st.header("Login using password")
     st.space()
     st.space()
 
